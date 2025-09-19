@@ -105,12 +105,12 @@ export function AppSidebar() {
   const isActive = (path: string) => currentPath === path;
 
   return (
-    <Sidebar className="w-72 transition-all duration-300">
-      <SidebarContent className="bg-sidebar border-r border-sidebar-border">
+    <Sidebar className="w-80 transition-all duration-300 border-r border-sidebar-border">
+      <SidebarContent className="bg-sidebar">
         {/* Logo区域 */}
-        <div className="p-6 border-b border-sidebar-border">
+        <div className="p-6 border-b border-sidebar-border bg-sidebar-accent/30">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-md">
               <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
             <div>
@@ -153,11 +153,11 @@ export function AppSidebar() {
                       >
                         <NavLink to={item.url} className="flex items-center gap-3 p-3 relative">
                           {/* 层级缩进 */}
-                          <div className={`w-${group.level} flex-shrink-0`} />
+                          <div className={`${group.level === 2 ? 'ml-2' : group.level === 3 ? 'ml-4' : ''}`} />
                           
                           {/* 活跃状态指示器 */}
                           {isActive(item.url) && (
-                            <div className="absolute left-2 top-1/2 -translate-y-1/2 w-0.5 h-6 bg-gradient-to-b from-primary to-secondary rounded-full" />
+                            <div className="absolute left-1 top-1/2 -translate-y-1/2 w-0.5 h-6 bg-gradient-to-b from-primary to-secondary rounded-full" />
                           )}
                           
                           <item.icon className={`
