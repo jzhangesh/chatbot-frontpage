@@ -6,62 +6,62 @@
 
 @layer base {
   :root {
-    /* 深色科技主题 */
-    --background: 215 28% 8%;
-    --foreground: 213 31% 91%;
+    /* 优雅深蓝主题 */
+    --background: 220 15% 6%;
+    --foreground: 210 20% 92%;
 
-    --card: 215 25% 12%;
-    --card-foreground: 213 31% 91%;
+    --card: 220 13% 9%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 215 25% 12%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 220 13% 9%;
+    --popover-foreground: 210 20% 92%;
 
-    /* 科技蓝主色调 */
-    --primary: 217 91% 60%;
-    --primary-foreground: 215 28% 8%;
-    --primary-glow: 217 91% 70%;
+    /* 优雅蓝主色调 */
+    --primary: 214 84% 56%;
+    --primary-foreground: 220 15% 6%;
+    --primary-glow: 214 84% 65%;
 
-    /* 青绿科技色 */
-    --secondary: 174 72% 56%;
-    --secondary-foreground: 215 28% 8%;
-    --secondary-glow: 174 72% 66%;
+    /* 优雅紫辅助色 */
+    --secondary: 267 57% 50%;
+    --secondary-foreground: 220 15% 6%;
+    --secondary-glow: 267 57% 60%;
 
-    /* 暗色调配色 */
-    --muted: 215 20% 20%;
-    --muted-foreground: 213 20% 65%;
+    /* 柔和配色 */
+    --muted: 220 13% 15%;
+    --muted-foreground: 210 10% 70%;
 
-    --accent: 215 25% 18%;
-    --accent-foreground: 213 31% 91%;
+    --accent: 220 13% 12%;
+    --accent-foreground: 210 20% 92%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 213 31% 91%;
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 210 20% 92%;
 
-    --border: 215 20% 20%;
-    --input: 215 20% 20%;
-    --ring: 217 91% 60%;
+    --border: 220 13% 18%;
+    --input: 220 13% 12%;
+    --ring: 214 84% 56%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* 科技感渐变 */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--secondary-glow)) 100%);
-    --gradient-tech: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(174 72% 56%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(215 25% 12%) 0%, hsl(215 25% 15%) 100%);
+    /* 优雅渐变 */
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%) 0%, hsl(267 57% 50%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(267 57% 50%) 0%, hsl(214 84% 65%) 100%);
+    --gradient-tech: linear-gradient(135deg, hsl(214 84% 56%) 0%, hsl(267 57% 50%) 50%, hsl(214 84% 65%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 13% 9%) 0%, hsl(220 13% 11%) 100%);
 
-    /* 光效阴影 */
-    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.2);
-    --shadow-tech: 0 8px 32px hsl(217 91% 60% / 0.15);
-    --shadow-card: 0 4px 20px hsl(215 28% 8% / 0.3);
+    /* 柔和光效 */
+    --shadow-glow: 0 0 25px hsl(214 84% 56% / 0.15);
+    --shadow-tech: 0 8px 25px hsl(214 84% 56% / 0.12);
+    --shadow-card: 0 4px 15px hsl(220 15% 6% / 0.25);
 
-    /* 侧边栏样式 */
-    --sidebar-background: 215 28% 10%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 215 28% 8%;
-    --sidebar-accent: 215 25% 15%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 215 20% 18%;
-    --sidebar-ring: 217 91% 60%;
+    /* 侧边栏优化 */
+    --sidebar-background: 220 15% 7%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 214 84% 56%;
+    --sidebar-primary-foreground: 220 15% 6%;
+    --sidebar-accent: 220 13% 11%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 13% 15%;
+    --sidebar-ring: 214 84% 56%;
 
     /* 动画过渡 */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

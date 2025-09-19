@@ -27,6 +27,12 @@ import {
 const navigationItems = [
   {
     title: "知识中心",
+    level: 1,
+    items: []
+  },
+  {
+    title: "知识应用",
+    level: 2,
     items: [
       { 
         title: "知识问答", 
@@ -51,17 +57,30 @@ const navigationItems = [
         url: "/knowledge-media", 
         icon: Video,
         description: "多媒体知识管理"
-      },
+      }
+    ]
+  },
+  {
+    title: "知识管理",
+    level: 2,
+    items: [
       { 
         title: "知识库", 
         url: "/knowledge-base", 
         icon: Database,
-        description: "统一知识存储"
+        description: "统一知识存储管理"
       },
+      { 
+        title: "数据分析", 
+        url: "/data-analytics", 
+        icon: FileBarChart,
+        description: "知识使用情况分析"
+      }
     ]
   },
   {
     title: "行业应用",
+    level: 3,
     items: [
       { 
         title: "标书助手", 
@@ -102,44 +121,66 @@ export function AppSidebar() {
         </div>
 
         {navigationItems.map((group) => (
-          <SidebarGroup key={group.title} className="px-4">
-            <SidebarGroupLabel className="text-muted-foreground uppercase tracking-wider text-xs font-medium mb-2">
+          <SidebarGroup key={group.title} className={`px-4 ${group.level === 1 ? 'mb-6' : group.level === 2 ? 'mb-4' : 'mb-2'}`}>
+            <SidebarGroupLabel 
+              className={`
+                flex items-center gap-2 uppercase tracking-wider font-medium mb-3
+                ${group.level === 1 ? 'text-primary text-sm' : 
+                  group.level === 2 ? 'text-secondary text-xs' : 
+                  'text-muted-foreground text-xs'}
+              `}
+            >
+              {group.level === 1 && <div className="w-2 h-2 rounded-full bg-primary" />}
+              {group.level === 2 && <div className="w-1.5 h-1.5 rounded-full bg-secondary" />}
+              {group.level === 3 && <div className="w-1 h-1 rounded-full bg-muted-foreground" />}
               {group.title}
             </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {group.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton 
-                      asChild 
-                      className={`
-                        group relative overflow-hidden rounded-lg transition-all duration-300
-                        ${isActive(item.url) 
-                          ? "bg-sidebar-accent text-sidebar-accent-foreground border border-primary/20" 
-                          : "hover:bg-sidebar-accent/50 text-sidebar-foreground"
-                        }
-                      `}
-                    >
-                      <NavLink to={item.url} className="flex items-center gap-3 p-3 relative">
-                        {/* 活跃状态指示器 */}
-                        {isActive(item.url) && (
-                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-primary to-secondary rounded-r-full" />
-                        )}
-                        
-                        <item.icon className={`w-5 h-5 flex-shrink-0 ${isActive(item.url) ? "text-primary" : "text-muted-foreground group-hover:text-sidebar-foreground"}`} />
-                        
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium">{item.title}</div>
-                          <div className="text-xs text-muted-foreground truncate">{item.description}</div>
-                        </div>
-                        
-                        <ChevronRight className={`w-4 h-4 text-muted-foreground transition-transform ${isActive(item.url) ? "rotate-90" : "group-hover:translate-x-1"}`} />
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
+            
+            {group.items.length > 0 && (
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {group.items.map((item) => (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton 
+                        asChild 
+                        className={`
+                          group relative overflow-hidden rounded-lg transition-all duration-300 mb-1
+                          ${isActive(item.url) 
+                            ? "bg-sidebar-accent text-sidebar-accent-foreground border border-primary/30 shadow-sm" 
+                            : "hover:bg-sidebar-accent/60 text-sidebar-foreground"
+                          }
+                        `}
+                      >
+                        <NavLink to={item.url} className="flex items-center gap-3 p-3 relative">
+                          {/* 层级缩进 */}
+                          <div className={`w-${group.level} flex-shrink-0`} />
+                          
+                          {/* 活跃状态指示器 */}
+                          {isActive(item.url) && (
+                            <div className="absolute left-2 top-1/2 -translate-y-1/2 w-0.5 h-6 bg-gradient-to-b from-primary to-secondary rounded-full" />
+                          )}
+                          
+                          <item.icon className={`
+                            w-4 h-4 flex-shrink-0 transition-colors
+                            ${isActive(item.url) ? "text-primary" : "text-muted-foreground group-hover:text-sidebar-foreground"}
+                          `} />
+                          
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium leading-tight">{item.title}</div>
+                            <div className="text-xs text-muted-foreground truncate mt-0.5">{item.description}</div>
+                          </div>
+                          
+                          <ChevronRight className={`
+                            w-3 h-3 text-muted-foreground transition-all duration-200
+                            ${isActive(item.url) ? "rotate-90 text-primary" : "group-hover:translate-x-0.5 group-hover:text-sidebar-foreground"}
+                          `} />
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            )}
           </SidebarGroup>
         ))}
       </SidebarContent>
