@@ -21,8 +21,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
-  useSidebar,
 } from "@/components/ui/sidebar";
 
 const navigationItems = [
@@ -101,28 +99,24 @@ const navigationItems = [
 
 export function AppSidebar() {
   const location = useLocation();
-  const { state } = useSidebar();
   const currentPath = location.pathname;
 
   const isActive = (path: string) => currentPath === path;
 
   return (
-    <Sidebar collapsible="icon" className="transition-all duration-300">
+    <Sidebar className="w-72 transition-all duration-300 shrink-0">
       <SidebarContent className="bg-sidebar border-r border-sidebar-border">
         {/* Logo区域 */}
         <div className="p-6 border-b border-sidebar-border">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
-            {state === "expanded" && (
-              <div className="min-w-0">
-                <h1 className="text-lg font-semibold text-sidebar-foreground truncate">ChatBot门户</h1>
-                <p className="text-xs text-muted-foreground truncate">智能应用集成平台</p>
-              </div>
-            )}
+            <div>
+              <h1 className="text-lg font-semibold text-sidebar-foreground">ChatBot门户</h1>
+              <p className="text-xs text-muted-foreground">智能应用集成平台</p>
+            </div>
           </div>
-          <SidebarTrigger className="mt-3 w-full" />
         </div>
 
         {navigationItems.map((group) => (
@@ -138,7 +132,7 @@ export function AppSidebar() {
               {group.level === 1 && <div className="w-2 h-2 rounded-full bg-primary" />}
               {group.level === 2 && <div className="w-1.5 h-1.5 rounded-full bg-secondary" />}
               {group.level === 3 && <div className="w-1 h-1 rounded-full bg-muted-foreground" />}
-              {state === "expanded" && group.title}
+              {group.title}
             </SidebarGroupLabel>
             
             {group.items.length > 0 && (
@@ -157,10 +151,8 @@ export function AppSidebar() {
                         `}
                       >
                         <NavLink to={item.url} className="flex items-center gap-3 p-3 relative">
-                          {/* 层级缩进 - 只在展开状态显示 */}
-                          {state === "expanded" && (
-                            <div className={`w-${group.level} flex-shrink-0`} />
-                          )}
+                          {/* 层级缩进 */}
+                          <div className={`w-${group.level} flex-shrink-0`} />
                           
                           {/* 活跃状态指示器 */}
                           {isActive(item.url) && (
@@ -172,19 +164,15 @@ export function AppSidebar() {
                             ${isActive(item.url) ? "text-primary" : "text-muted-foreground group-hover:text-sidebar-foreground"}
                           `} />
                           
-                          {state === "expanded" && (
-                            <div className="flex-1 min-w-0">
-                              <div className="text-sm font-medium leading-tight">{item.title}</div>
-                              <div className="text-xs text-muted-foreground truncate mt-0.5">{item.description}</div>
-                            </div>
-                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium leading-tight">{item.title}</div>
+                            <div className="text-xs text-muted-foreground truncate mt-0.5">{item.description}</div>
+                          </div>
                           
-                          {state === "expanded" && (
-                            <ChevronRight className={`
-                              w-3 h-3 text-muted-foreground transition-all duration-200
-                              ${isActive(item.url) ? "rotate-90 text-primary" : "group-hover:translate-x-0.5 group-hover:text-sidebar-foreground"}
-                            `} />
-                          )}
+                          <ChevronRight className={`
+                            w-3 h-3 text-muted-foreground transition-all duration-200
+                            ${isActive(item.url) ? "rotate-90 text-primary" : "group-hover:translate-x-0.5 group-hover:text-sidebar-foreground"}
+                          `} />
                         </NavLink>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
