@@ -105,8 +105,8 @@ export function AppSidebar() {
   const isActive = (path: string) => currentPath === path;
 
   return (
-    <Sidebar className="w-72 transition-all duration-300">
-      <SidebarContent className="bg-sidebar border-r border-sidebar-border">
+    <Sidebar className="w-72 transition-all duration-300 shrink-0">
+      <SidebarContent className="bg-sidebar border-r border-sidebar-border h-full">
         {/* Logo区域 */}
         <div className="p-6 border-b border-sidebar-border">
           <div className="flex items-center gap-3">
